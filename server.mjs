@@ -5,7 +5,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chat, rateLimited } from './api/_chat-core.js';
+import { chat, rateLimited } from './api/chat.js';
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 8000;

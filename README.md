@@ -39,30 +39,27 @@ powered by Claude, anything about what you're looking at. Switch the whole inter
 
 ## Project structure
 
+Everything sits in one folder (only `api/` is separate, because Vercel needs it there), so the
+project can be uploaded through GitHub's web page.
+
 ```
 index.html            Page layout
-css/style.css         Styles
-js/data.js            ★ Facts and text for every body (edit here)
-js/maps.js            Loads the real surface maps from textures/
-textures/             Real planet maps (colour, bump, normal, clouds, Saturn's ring)
-js/textures.js        Procedural backup surfaces, used if a map is missing
-js/bodies.js          3D builders: buildPlanet, buildSun, stars, asteroid belt
-js/gestures.js        Hand tracking (MediaPipe) and gesture recognition
-js/voice.js           Speech-to-text and text-to-speech
-js/chat.js            Ask Stelar chat panel and voice commands
-js/i18n.js            Languages: Spanish dictionary and language switch (edit translations here)
-js/main.js            Scene, camera, views, mouse and gesture controls
-api/chat.js           Online AI endpoint (Vercel serverless function)
-api/_chat-core.js     Shared AI logic (prompt, limits, Claude API call)
+style.css             Styles
+data.js               ★ Facts and text for every body (edit here)
+i18n.js               Languages: Spanish dictionary and language switch
+maps.js               Loads the real surface maps (the .jpg/.png files)
+textures.js           Procedural backup surfaces, used if a map is missing
+bodies.js             3D builders: buildPlanet, buildSun, stars, asteroid belt
+gestures.js           Hand tracking (MediaPipe) and gesture recognition
+voice.js              Speech-to-text and text-to-speech
+chat.js               Ask Stelar chat panel and voice commands
+main.js               Scene, camera, views, mouse and gesture controls
+api/chat.js           AI endpoint on Vercel (prompt, limits, Claude API call)
 server.mjs            Local server: the app plus the AI chat on http://localhost:8000
-particle-garden.html  The earlier Particle Garden version (still works)
-orbit-standalone.html Single-file build of the app (npm run build), opens with a double-click
-tools/                Build script for orbit-standalone.html
+*.jpg, *.png          Planet surface maps
+orbit-standalone.html Single-file version, opens with a double-click (no AI answers)
+particle-garden.html  The earlier Particle Garden version
 ```
-
-To change a planet's look, edit its painter in `js/textures.js` or its builder in `js/bodies.js`.
-To change facts or text, edit `js/data.js`. Each planet is independent, so teammates can work on
-different planets without conflicts.
 
 ## Quickest way to look at it
 
@@ -70,7 +67,7 @@ Double-click **`orbit-standalone.html`**. It's the whole app in one file and ope
 folder. Everything works except the AI answers, which need the server below. `index.html` needs a
 server; if you double-click it, the page explains what to do.
 
-After changing anything in `js/` or `css/`, run `npm run build` to refresh `orbit-standalone.html`.
+`orbit-standalone.html` is a snapshot; after big changes, ask for it to be rebuilt.
 
 ## Run it locally
 
